@@ -1,4 +1,4 @@
-# lazyvim nixos flake moudule
+# lazyvim Nixos flake module
 
 ## Usage
 
