@@ -18,7 +18,7 @@
         # 暴露 flake module 接口
         nixosModules.lazyvim = { config, pkgs, lib, ... }: {
           environment.systemPackages = [
-            (nixvim.legacyPackages.${pkgs.system}.makeNixvim {
+            (nixvim.legacyPackages.${stdenv.hostPlatform.system}.makeNixvim {
               enableMan = false;
               withPython3 = false;
               withRuby = false;
