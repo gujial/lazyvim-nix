@@ -19,5 +19,8 @@
     
     # SQLite（用于 Snacks.picker 的历史和频率功能）
     sqlite
+
+    # 额外的系统工具
+    nixfmt
   ];
 }

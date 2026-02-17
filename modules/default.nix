@@ -8,6 +8,7 @@ let
   lspModule = import ./lsp.nix { inherit pkgs; };
   dapModule = import ./dap.nix { inherit pkgs; };
   treesitterModule = import ./treesitter.nix { inherit pkgs; };
+  optionalToolsModule = import ./optional-tools.nix { inherit pkgs; };
   uiModule = import ./ui.nix { };
   keybindingsModule = import ./keybindings.nix { };
 
@@ -21,6 +22,7 @@ let
     (getList "extraPackages" lspModule) ++
     (getList "extraPackages" dapModule) ++
     (getList "extraPackages" treesitterModule) ++
+    (getList "extraPackages" optionalToolsModule) ++
     (getList "extraPackages" uiModule) ++
     (getList "extraPackages" keybindingsModule)
   );

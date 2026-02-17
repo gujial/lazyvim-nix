@@ -19,7 +19,7 @@
     ruff
     
     # TypeScript/JavaScript
-    nodePackages.vtsls
+    vtsls
     
     # 通用工具
     ripgrep
@@ -68,5 +68,20 @@
     
     -- TypeScript/JavaScript LSP 配置
     lspconfig.vtsls.setup({})
+    
+    -- C/C++ LSP 配置
+    lspconfig.clangd.setup({
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+      },
+      capabilities = {
+        offsetEncoding = { "utf-16" },
+      },
+    })
   '';
 }
