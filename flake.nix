@@ -38,14 +38,8 @@
 
       flake = {
         # 暴露 flake module 接口
-        nixosModules.lazyvim = { config, lib, ... }: 
+        nixosModules.lazyvim = { pkgs, lib, ... }:
         let
-          pkgs = import nixpkgs {
-            system = config.nixpkgs.system;
-            config = {
-              allowUnfree = true;
-            };
-          };
           # 使用统一的配置整合
           mergedConfig = import ./modules/default.nix { inherit pkgs lib; };
         in {
