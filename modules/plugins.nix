@@ -76,9 +76,11 @@
           opts = {
             picker = {
               hidden = true,
+              ignored = true,
               sources = {
                 files = {
-                  hidden = true, -- Show hidden/dotfiles
+                  hidden = true, -- 显示隐藏文件（以 . 开头）
+                  ignored = true, -- 显示 .gitignore 中的文件
                 },
               },
             },
