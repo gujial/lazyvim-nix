@@ -70,6 +70,21 @@
         -- direnv
         { "NotAShelf/direnv.nvim", opts = {} },
 
+        -- snacks.nvim 文件浏览器
+        {
+          "folke/snacks.nvim",
+          opts = {
+            picker = {
+              hidden = true,
+              sources = {
+                files = {
+                  hidden = true, -- Show hidden/dotfiles
+                },
+              },
+            },
+          },
+        },
+
         -- DAP 调试配置
         {
           "mfussenegger/nvim-dap",
