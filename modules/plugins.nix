@@ -31,13 +31,16 @@
           enabled = true 
         },
         
-        -- 语法树（禁用 mason 自动安装）
+        -- 语法树
         { 
           "nvim-treesitter/nvim-treesitter",
           opts = function(_, opts) 
             opts.ensure_installed = {} 
           end 
         },
+
+        -- direnv
+        { "neovim-direnv/direnv.nvim", opts = {} },
         
         -- 禁用 mason（由 nix 管理）
         { "mason-org/mason-lspconfig.nvim", enabled = false },

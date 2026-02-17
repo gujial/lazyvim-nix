@@ -29,7 +29,7 @@ let
     (getList "extraPlugins" keybindingsModule);
 
   # 合并所有 Lua 代码
-  luaConfig = lib.concatStringsSep "\n" (filter (s: s != "") [
+  luaConfig = lib.concatStringsSep "\n" (lib.filter (s: s != "") [
     (getString "extraConfigLua" pluginsModule)
     (getString "extraConfigLua" lspModule)
     (getString "extraConfigLua" uiModule)
