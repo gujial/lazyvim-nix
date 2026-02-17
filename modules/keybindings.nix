@@ -29,14 +29,14 @@
     
     -- DAP 调试快捷键
     local dap = require("dap")
-    keymap("n", "<F5>", function() dap.continue() end, opts)
-    keymap("n", "<F10>", function() dap.step_over() end, opts)
-    keymap("n", "<F11>", function() dap.step_into() end, opts)
-    keymap("n", "<S-F11>", function() dap.step_out() end, opts)
-    keymap("n", "<leader>db", function() dap.toggle_breakpoint() end, opts)
-    keymap("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, opts)
-    keymap("n", "<leader>dc", function() dap.clear_breakpoints() end, opts)
-    keymap("n", "<leader>dr", function() dap.repl.open() end, opts)
-    keymap("n", "<leader>dl", function() dap.run_last() end, opts)
+    keymap("n", "<F5>", function() dap.continue() end, vim.tbl_extend("force", opts, { desc = "DAP Continue" }))
+    keymap("n", "<F10>", function() dap.step_over() end, vim.tbl_extend("force", opts, { desc = "DAP Step Over" }))
+    keymap("n", "<F11>", function() dap.step_into() end, vim.tbl_extend("force", opts, { desc = "DAP Step Into" }))
+    keymap("n", "<S-F11>", function() dap.step_out() end, vim.tbl_extend("force", opts, { desc = "DAP Step Out" }))
+    keymap("n", "<leader>db", function() dap.toggle_breakpoint() end, vim.tbl_extend("force", opts, { desc = "Toggle Breakpoint" }))
+    keymap("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, vim.tbl_extend("force", opts, { desc = "Conditional Breakpoint" }))
+    keymap("n", "<leader>dc", function() dap.clear_breakpoints() end, vim.tbl_extend("force", opts, { desc = "Clear Breakpoints" }))
+    keymap("n", "<leader>dr", function() dap.repl.open() end, vim.tbl_extend("force", opts, { desc = "Open REPL" }))
+    keymap("n", "<leader>dl", function() dap.run_last() end, vim.tbl_extend("force", opts, { desc = "Run Last" }))
   '';
 }
