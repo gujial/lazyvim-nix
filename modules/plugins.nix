@@ -41,6 +41,23 @@
 
         -- direnv
         { "NotAShelf/direnv.nvim", opts = {} },
+
+        -- DAP 调试配置
+        {
+          "mfussenegger/nvim-dap",
+          dependencies = {
+            "rcarriga/nvim-dap-ui",
+            "theHamsta/nvim-dap-virtual-text",
+          }
+        },
+        {
+          "rcarriga/nvim-dap-ui",
+          dependencies = { "nvim-neotest/nvim-nio" },
+          keys = {
+            { "<leader>du", function() require("dapui").toggle() end, desc = "Dap UI" },
+            { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "v" } },
+          }
+        },
         
         -- 禁用 mason（由 nix 管理）
         { "mason-org/mason-lspconfig.nvim", enabled = false },
