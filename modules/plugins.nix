@@ -40,7 +40,7 @@
         },
 
         -- direnv
-        { "neovim-direnv/direnv.nvim", opts = {} },
+        { "NotAShelf/direnv.nvim", opts = {} },
         
         -- 禁用 mason（由 nix 管理）
         { "mason-org/mason-lspconfig.nvim", enabled = false },
