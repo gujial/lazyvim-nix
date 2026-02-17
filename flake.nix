@@ -14,38 +14,35 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
+      perSystem = { pkgs, lib, ... }:
+      let
+        mergedConfig = import ./modules/default.nix { inherit pkgs lib; };
+      in {
+        devShells.default = pkgs.mkShell {
+          packages = [
+            (nixvim.legacyPackages.${pkgs.stdenv.hostPlatform.system}.makeNixvim {
+              extraPackages = mergedConfig.packages;
+              extraPlugins = mergedConfig.plugins;
+              extraConfigLua = mergedConfig.luaConfig;
+              opts = mergedConfig.opts;
+            })
+          ];
+        };
+      };
+
       flake = {
         # 暴露 flake module 接口
-        nixosModules.lazyvim = { config, pkgs, lib, ... }: {
+        nixosModules.lazyvim = { config, pkgs, lib, ... }: 
+        let
+          # 使用统一的配置整合
+          mergedConfig = import ./modules/default.nix { inherit pkgs lib; };
+        in {
           environment.systemPackages = [
             (nixvim.legacyPackages.${pkgs.stdenv.hostPlatform.system}.makeNixvim {
-              enableMan = false;
-              withPython3 = false;
-              withRuby = false;
-              extraPackages = with pkgs; [
-                lua-language-server
-                stylua
-                ripgrep
-              ];
-              extraPlugins = [ pkgs.vimPlugins.lazy-nvim ];
-              extraConfigLua = ''
-                require("lazy").setup({
-                  defaults = { lazy = true },
-                  dev = {
-                    path = "${pkgs.linkFarm "lazy-plugins" []}",
-                    patterns = { "" },
-                    fallback = true,
-                  },
-                  spec = {
-                    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-                    { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
-                    { "mason-org/mason-lspconfig.nvim", enabled = false },
-                    { "mason-org/mason.nvim", enabled = false },
-                    { "nvim-treesitter/nvim-treesitter",
-                      opts = function(_, opts) opts.ensure_installed = {} end },
-                  },
-                })
-              '';
+              extraPackages = mergedConfig.packages;
+              extraPlugins = mergedConfig.plugins;
+              extraConfigLua = mergedConfig.luaConfig;
+              opts = mergedConfig.opts;
             })
           ];
         };
