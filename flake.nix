@@ -44,6 +44,9 @@
               extraConfigLua = mergedConfig.luaConfig;
               opts = mergedConfig.opts;
             })
+
+            pkgs.nodejs
+            pkgs.nixfmt
           ];
         };
       };
