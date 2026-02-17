@@ -35,7 +35,11 @@
         { 
           "nvim-treesitter/nvim-treesitter",
           opts = function(_, opts) 
-            opts.ensure_installed = {} 
+            opts.ensure_installed = {}
+            -- 由于使用 Nix 管理，禁用自动安装
+            opts.auto_install = false
+            -- Nix 提供的 parsers 会自动在系统路径中
+            opts.parser_install_dir = nil
           end 
         },
 

@@ -6,7 +6,7 @@
   extraPackages = with pkgs; [
     gdb           # GNU 调试器
     lldb          # LLVM 调试器
-    lldb-mi       # LLDB 机器接口（可选）
+    vscode-js-debug  # JavaScript/TypeScript 调试器
   ];
 
   # DAP 插件
@@ -85,7 +85,8 @@
     dap.adapters.cppdbg = {
       id = "cppdbg",
       type = "executable",
-      command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools-*/debugAdapters/bin/OpenDebugAD7",
+      command = "${pkgs.gdb}/bin/gdb",
+      args = {"-i", "dap"},
       options = {
         detached = false
       }
@@ -106,6 +107,60 @@
       type = "executable",
       command = "${pkgs.gdb}/bin/gdb",
       args = {"-i", "mi"},
+    }
+
+    -- JavaScript/TypeScript 调试适配器
+    dap.adapters["pwa-node"] = {
+      type = "server",
+      host = "localhost",
+      port = "''${port}",
+      executable = {
+        command = "${pkgs.vscode-js-debug}/bin/js-debug-adapter",
+        args = { "''${port}" },
+      }
+    }
+    dap.adapters["pwa-chrome"] = dap.adapters["pwa-node"]
+    dap.adapters["pwa-msedge"] = dap.adapters["pwa-node"]
+    dap.adapters.node = dap.adapters["pwa-node"]
+    dap.adapters.chrome = dap.adapters["pwa-node"]
+    dap.adapters.msedge = dap.adapters["pwa-node"]
+
+    -- Python 调试适配器
+    dap.adapters.python = function(cb, config)
+      if config.request == "attach" then
+        local port = (config.connect or config).port
+        local host = (config.connect or config).host or "127.0.0.1"
+        cb({
+          type = "server",
+          port = assert(port, "`connect.port` is required for a python `attach` configuration"),
+          host = host,
+          options = {
+            source_filetype = "python",
+          },
+        })
+      else
+        cb({
+          type = "executable",
+          command = "python3",
+          args = { "-m", "debugpy.adapter" },
+          options = {
+            source_filetype = "python",
+          },
+        })
+      end
+    end
+
+    -- Python 调试配置
+    dap.configurations.python = {
+      {
+        type = "python",
+        request = "launch",
+        name = "Launch file",
+        program = "''${file}",
+        pythonPath = function()
+          return "python3"
+        end,
+      },
     }
 
     -- 虚拟文本配置

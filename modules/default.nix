@@ -7,6 +7,7 @@ let
   pluginsModule = import ./plugins.nix { inherit pkgs; };
   lspModule = import ./lsp.nix { inherit pkgs; };
   dapModule = import ./dap.nix { inherit pkgs; };
+  treesitterModule = import ./treesitter.nix { inherit pkgs; };
   uiModule = import ./ui.nix { };
   keybindingsModule = import ./keybindings.nix { };
 
@@ -19,6 +20,7 @@ let
     (getList "extraPackages" pluginsModule) ++
     (getList "extraPackages" lspModule) ++
     (getList "extraPackages" dapModule) ++
+    (getList "extraPackages" treesitterModule) ++
     (getList "extraPackages" uiModule) ++
     (getList "extraPackages" keybindingsModule)
   );
@@ -27,12 +29,14 @@ let
   plugins = 
     (getList "extraPlugins" pluginsModule) ++
     (getList "extraPlugins" dapModule) ++
+    (getList "extraPlugins" treesitterModule) ++
     (getList "extraPlugins" lspModule) ++
     (getList "extraPlugins" uiModule) ++
     (getList "extraPlugins" keybindingsModule);
 
   # 合并所有 Lua 代码
   luaConfig = lib.concatStringsSep "\n" (lib.filter (s: s != "") [
+    (getString "extraConfigLua" treesitterModule)
     (getString "extraConfigLua" pluginsModule)
     (getString "extraConfigLua" dapModule)
     (getString "extraConfigLua" lspModule)

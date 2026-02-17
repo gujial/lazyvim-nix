@@ -14,8 +14,14 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
-      perSystem = { pkgs, lib, ... }:
+      perSystem = { system, lib, ... }:
       let
+        pkgs = import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+        };
         mergedConfig = import ./modules/default.nix { inherit pkgs lib; };
       in {
         devShells.default = pkgs.mkShell {
@@ -32,8 +38,14 @@
 
       flake = {
         # 暴露 flake module 接口
-        nixosModules.lazyvim = { config, pkgs, lib, ... }: 
+        nixosModules.lazyvim = { config, lib, ... }: 
         let
+          pkgs = import nixpkgs {
+            system = config.nixpkgs.system;
+            config = {
+              allowUnfree = true;
+            };
+          };
           # 使用统一的配置整合
           mergedConfig = import ./modules/default.nix { inherit pkgs lib; };
         in {
