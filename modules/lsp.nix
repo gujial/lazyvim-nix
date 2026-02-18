@@ -8,6 +8,9 @@
     lua-language-server
     stylua
 
+    # C/C++
+    clang-tools
+
     # Bash
     nodePackages.bash-language-server
 
