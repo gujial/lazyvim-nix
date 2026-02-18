@@ -5,9 +5,8 @@ require("lazy").setup({
 		patterns = { "" },
 		fallback = true,
 	},
-	-- 禁用 luarocks 支持（由 Nix 管理）
 	rocks = {
-		enabled = false,
+		enabled = true,
 	},
 	spec = {
 		-- LazyVim 核心
