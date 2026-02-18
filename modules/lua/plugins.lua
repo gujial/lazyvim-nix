@@ -21,11 +21,26 @@ require("lazy").setup({
 		-- ltex Extra 词典
 		{
 			"barreiroleo/ltex_extra.nvim",
-			ft = { "markdown", "tex" },
+			ft = { "markdown", "tex", "text" },
 			dependencies = { "neovim/nvim-lspconfig" },
-			opts = {
-				load_langs = { "en-US", "zh-CN" },
-			},
+			config = function()
+				-- 手动配置 LTEX LSP
+				require("lspconfig").ltex.setup({
+					filetypes = { "markdown", "tex", "text" },
+					settings = {
+						ltex = {
+							language = "zh-CN",
+							completionEnabled = true,
+						},
+					},
+				})
+				-- ltex_extra 配置
+				require("ltex_extra").setup({
+					load_langs = { "en-US", "zh-CN" },
+					init_check = true,
+					tabSize = 2,
+				})
+			end,
 		},
 
 		{

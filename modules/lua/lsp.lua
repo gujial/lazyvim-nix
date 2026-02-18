@@ -15,16 +15,6 @@ lspconfig.lua_ls.setup({
 -- Bash LSP 配置
 lspconfig.bashls.setup({})
 
--- Latex LSP 配置
-lspconfig.ltex.setup({
-	filetypes = { "markdown", "tex", "text" },
-	settings = {
-		ltex = {
-			language = "zh-CN",
-		},
-	},
-})
-
 -- Python LSP 配置
 lspconfig.pyright.setup({
 	settings = {
