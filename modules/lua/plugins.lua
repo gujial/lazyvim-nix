@@ -6,7 +6,7 @@ require("lazy").setup({
 		fallback = true,
 	},
 	rocks = {
-		enabled = true,
+		enabled = false,
 	},
 	spec = {
 		-- LazyVim 核心
@@ -33,12 +33,14 @@ require("lazy").setup({
 							completionEnabled = true,
 						},
 					},
-				})
-				-- ltex_extra 配置
-				require("ltex_extra").setup({
-					load_langs = { "en-US", "zh-CN" },
-					init_check = true,
-					tabSize = 2,
+					on_attach = function(client, bufnr)
+						-- 在 LSP 客户端附加到缓冲区后初始化 ltex_extra
+						require("ltex_extra").setup({
+							load_langs = { "en-US", "zh-CN" },
+							init_check = true,
+							path = vim.fn.stdpath("config") .. "/ltex",
+						})
+					end,
 				})
 			end,
 		},
