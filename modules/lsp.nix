@@ -7,20 +7,20 @@
     # Lua
     lua-language-server
     stylua
-    
+
     # Bash
     nodePackages.bash-language-server
-    
+
     # Markdown
     marksman
-    
+
     # Python
     pyright
     ruff
-    
+
     # TypeScript/JavaScript
     vtsls
-    
+
     # 通用工具
     ripgrep
     fd
@@ -32,7 +32,7 @@
   extraConfigLua = ''
     -- LSP 配置
     local lspconfig = require('lspconfig')
-    
+
     -- Lua LSP 配置
     lspconfig.lua_ls.setup({
       settings = {
@@ -43,13 +43,13 @@
         }
       }
     })
-    
+
     -- Bash LSP 配置
     lspconfig.bashls.setup({})
-    
+
     -- Markdown LSP 配置
     lspconfig.marksman.setup({})
-    
+
     -- Python LSP 配置
     lspconfig.pyright.setup({
       settings = {
@@ -62,13 +62,13 @@
         }
       }
     })
-    
+
     -- Ruff LSP 配置
     lspconfig.ruff.setup({})
-    
+
     -- TypeScript/JavaScript LSP 配置
     lspconfig.vtsls.setup({})
-    
+
     -- C/C++ LSP 配置
     lspconfig.clangd.setup({
       cmd = {

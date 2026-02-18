@@ -17,7 +17,7 @@
     require("lazy").setup({
       defaults = { lazy = true },
       dev = {
-        path = "${pkgs.linkFarm "lazy-plugins" []}",
+        path = "${pkgs.linkFarm "lazy-plugins" [ ]}",
         patterns = { "" },
         fallback = true,
       },
@@ -258,8 +258,8 @@
         },
         
         -- 禁用 mason（由 nix 管理）
-        { "mason-org/mason-lspconfig.nvim", enabled = false },
-        { "mason-org/mason.nvim", enabled = false },
+        { "mason-org/mason-lspconfig.nvim", enabled = true },
+        { "mason-org/mason.nvim", enabled = true },
       },
     })
   '';
