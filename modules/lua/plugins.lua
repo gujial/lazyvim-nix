@@ -28,6 +28,13 @@ require("lazy").setup({
 			},
 		},
 
+		{
+			"CopilotC-Nvim/CopilotChat.nvim",
+			opts = {},
+			dependencies = { "zbirenbaum/copilot.lua" },
+			event = "VeryLazy",
+		},
+
 		-- 语法树
 		{
 			"nvim-treesitter/nvim-treesitter",
