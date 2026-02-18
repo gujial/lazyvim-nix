@@ -25,7 +25,7 @@
         "@VSCODE_JS_DEBUG_PATH@"
       ]
       [
-        (pkgs.linkFarm "lazy-plugins" [ ])
+        "${pkgs.linkFarm "lazy-plugins" [ ]}"
         "${pkgs.gdb}/bin"
         "${pkgs.lldb}/bin"
         "${pkgs.vscode-js-debug}"
