@@ -27,6 +27,9 @@
     # Dart
     dart
 
+    # Nix
+    nil
+
     # 通用工具
     ripgrep
     fd
