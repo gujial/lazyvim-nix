@@ -15,7 +15,7 @@
   # LazyVim 插件规范配置
   extraConfigLua = 
     let
-      luaConfig = builtins.readFile ./plugins.lua;
+      luaConfig = builtins.readFile ./lua/plugins.lua;
     in
     builtins.replaceStrings
       [
