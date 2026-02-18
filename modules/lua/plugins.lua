@@ -18,6 +18,16 @@ require("lazy").setup({
 			enabled = true,
 		},
 
+		-- copilot
+		{
+			"zbirenbaum/copilot.lua",
+			opts = {
+				suggestion = {
+					auto_trigger = true,
+				},
+			},
+		},
+
 		-- 语法树
 		{
 			"nvim-treesitter/nvim-treesitter",
