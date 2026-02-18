@@ -141,18 +141,63 @@
             local dap = require("dap")
             local dapui = require("dapui")
 
-            -- 初始化 DAP UI
-            dapui.setup()
+            -- 初始化 DAP UI，配置布局选项
+            dapui.setup({
+              layouts = {
+                {
+                  elements = {
+                    { id = "scopes", size = 0.25 },
+                    { id = "breakpoints", size = 0.25 },
+                    { id = "stacks", size = 0.25 },
+                    { id = "watches", size = 0.25 },
+                  },
+                  size = 40,
+                  position = "left",
+                },
+                {
+                  elements = {
+                    { id = "repl", size = 0.5 },
+                    { id = "console", size = 0.5 },
+                  },
+                  size = 10,
+                  position = "bottom",
+                },
+              },
+            })
 
-            -- DAP 事件监听
+            -- 保存窗口布局的变量
+            local saved_layout = nil
+
+            -- DAP 事件监听 - 保存和恢复窗口布局
             dap.listeners.after.event_initialized["dapui_config"] = function()
+              -- 保存当前窗口布局
+              local ok, layout = pcall(vim.fn.winrestcmd)
+              if ok and layout and type(layout) == "string" and layout ~= "" then
+                saved_layout = layout
+              end
               dapui.open()
             end
+            
             dap.listeners.before.event_terminated["dapui_config"] = function()
               dapui.close()
+              -- 恢复窗口布局
+              if saved_layout and type(saved_layout) == "string" and saved_layout ~= "" then
+                vim.defer_fn(function()
+                  pcall(vim.cmd, saved_layout)
+                  saved_layout = nil
+                end, 50)
+              end
             end
+            
             dap.listeners.before.event_exited["dapui_config"] = function()
               dapui.close()
+              -- 恢复窗口布局
+              if saved_layout and type(saved_layout) == "string" and saved_layout ~= "" then
+                vim.defer_fn(function()
+                  pcall(vim.cmd, saved_layout)
+                  saved_layout = nil
+                end, 50)
+              end
             end
 
             -- C/C++ 调试配置 (GDB)
