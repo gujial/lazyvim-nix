@@ -359,5 +359,31 @@ require("lazy").setup({
 		-- mason
 		{ "mason-org/mason-lspconfig.nvim", enabled = true },
 		{ "mason-org/mason.nvim", enabled = true },
+
+		-- nvim-treesitter
+		{
+			"nvim-treesitter/nvim-treesitter",
+			lazy = false,
+			build = ":TSUpdate",
+		},
+
+		-- LeetCode 插件
+		{
+			"kawre/leetcode.nvim",
+			build = ":TSUpdate html",
+			cmd = "Leet",
+			opts = {
+				cn = {
+					enabled = true,
+					translator = true,
+					translate_problems = true,
+				},
+				dependencies = {
+					"folke/snacks.nvim",
+				},
+				lang = "cpp",
+				picker = { provider = "snacks-picker" },
+			},
+		},
 	},
 })
