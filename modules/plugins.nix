@@ -87,7 +87,7 @@
           },
         },
 
-        -- 任务运行器（支持 VSCode tasks.json）
+        -- 任务运行器
         {
           "stevearc/overseer.nvim",
           opts = {
@@ -344,7 +344,7 @@
           }
         },
         
-        -- 禁用 mason（由 nix 管理）
+        -- mason
         { "mason-org/mason-lspconfig.nvim", enabled = true },
         { "mason-org/mason.nvim", enabled = true },
       },
