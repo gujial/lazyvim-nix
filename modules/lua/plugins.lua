@@ -18,7 +18,16 @@ require("lazy").setup({
 			enabled = true,
 		},
 
-		-- copilot
+		-- ltex Extra 词典
+		{
+			"barreiroleo/ltex_extra.nvim",
+			ft = { "markdown", "tex" },
+			dependencies = { "neovim/nvim-lspconfig" },
+			opts = {
+				load_langs = { "en-US", "zh-CN" },
+			},
+		},
+
 		{
 			"zbirenbaum/copilot.lua",
 			opts = {
@@ -374,8 +383,8 @@ require("lazy").setup({
 		},
 
 		-- mason
-		{ "mason-org/mason-lspconfig.nvim", enabled = true },
-		{ "mason-org/mason.nvim", enabled = true },
+		{ "mason-org/mason-lspconfig.nvim", enabled = false },
+		{ "mason-org/mason.nvim", enabled = false },
 
 		-- nvim-treesitter
 		{

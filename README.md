@@ -66,6 +66,7 @@ g++ -g -o program program.cpp
 ### Python 调试
 
 需要安装 debugpy：
+
 ```bash
 pip install debugpy
 ```
@@ -101,6 +102,7 @@ modules/
 ## 🔍 健康检查
 
 查看系统状态：
+
 ```vim
 :checkhealth
 ```
@@ -110,6 +112,7 @@ modules/
 ## 🛠️ 已安装的工具
 
 ### LSP 服务器
+
 - lua-language-server (Lua)
 - bash-language-server (Bash)
 - marksman (Markdown)
@@ -119,12 +122,14 @@ modules/
 - nil (Nix)
 
 ### 调试器
+
 - GDB (C/C++)
 - LLDB (C/C++)
 - vscode-js-debug (JavaScript/TypeScript)
 - debugpy (Python)
 
 ### 工具
+
 - ripgrep (快速搜索)
 - fd (文件查找)
 - fzf (模糊查找)
@@ -147,4 +152,3 @@ modules/
 ## 📄 许可证
 
 MIT
-```

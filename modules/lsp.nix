@@ -14,8 +14,10 @@
     # Bash
     nodePackages.bash-language-server
 
-    # Markdown
-    marksman
+    # Latex
+    ltex-ls
+
+    markdownlint-cli2
 
     # Python
     pyright
