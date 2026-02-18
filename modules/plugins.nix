@@ -87,6 +87,47 @@
           },
         },
 
+        -- 任务运行器（支持 VSCode tasks.json）
+        {
+          "stevearc/overseer.nvim",
+          opts = {
+            dap = true,
+            task_list = {
+              bindings = {
+                ["?"] = "ShowHelp",
+                ["g?"] = "ShowHelp",
+                ["<CR>"] = "RunAction",
+                ["<C-e>"] = "Edit",
+                ["o"] = "Open",
+                ["<C-v>"] = "OpenVsplit",
+                ["<C-s>"] = "OpenSplit",
+                ["<C-f>"] = "OpenFloat",
+                ["<C-q>"] = "OpenQuickFix",
+                ["p"] = "TogglePreview",
+                ["<C-l>"] = "IncreaseDetail",
+                ["<C-h>"] = "DecreaseDetail",
+                ["L"] = "IncreaseAllDetail",
+                ["H"] = "DecreaseAllDetail",
+                ["["] = "DecreaseWidth",
+                ["]"] = "IncreaseWidth",
+                ["{"] = "PrevTask",
+                ["}"] = "NextTask",
+                ["<C-k>"] = "ScrollOutputUp",
+                ["<C-j>"] = "ScrollOutputDown",
+              },
+            },
+          },
+          keys = {
+            { "<leader>ow", "<cmd>OverseerToggle<cr>", desc = "Task list" },
+            { "<leader>oo", "<cmd>OverseerRun<cr>", desc = "Run task" },
+            { "<leader>oq", "<cmd>OverseerQuickAction<cr>", desc = "Quick action" },
+            { "<leader>oi", "<cmd>OverseerInfo<cr>", desc = "Task info" },
+            { "<leader>ob", "<cmd>OverseerBuild<cr>", desc = "Build task" },
+            { "<leader>ot", "<cmd>OverseerTaskAction<cr>", desc = "Task action" },
+            { "<leader>oc", "<cmd>OverseerClearCache<cr>", desc = "Clear cache" },
+          },
+        },
+
         -- DAP 调试配置
         {
           "mfussenegger/nvim-dap",
@@ -94,6 +135,7 @@
             "rcarriga/nvim-dap-ui",
             "theHamsta/nvim-dap-virtual-text",
             "nvim-neotest/nvim-nio",
+            "stevearc/overseer.nvim",
           },
           config = function()
             local dap = require("dap")
