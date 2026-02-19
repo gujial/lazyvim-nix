@@ -33,7 +33,7 @@ require("lazy").setup({
 							completionEnabled = true,
 						},
 					},
-					on_attach = function(client, bufnr)
+					on_attach = function()
 						-- 在 LSP 客户端附加到缓冲区后初始化 ltex_extra
 						require("ltex_extra").setup({
 							load_langs = { "en-US", "zh-CN" },
@@ -49,7 +49,12 @@ require("lazy").setup({
 			"zbirenbaum/copilot.lua",
 			opts = {
 				suggestion = {
+					enable = true,
 					auto_trigger = true,
+				},
+				panel = {
+					enabled = true,
+					auto_refresh = true,
 				},
 			},
 		},

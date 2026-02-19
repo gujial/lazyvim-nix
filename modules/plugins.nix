@@ -7,13 +7,14 @@
     lua-language-server
     stylua
     ripgrep
+    utftex
   ];
 
   # 核心插件
   extraPlugins = [ pkgs.vimPlugins.lazy-nvim ];
 
   # LazyVim 插件规范配置
-  extraConfigLua = 
+  extraConfigLua =
     let
       luaConfig = builtins.readFile ./lua/plugins.lua;
     in

@@ -46,9 +46,6 @@
                 extraConfigLua = mergedConfig.luaConfig;
                 inherit (mergedConfig) opts;
               })
-
-              pkgs.unzip
-              pkgs.cargo
             ];
           };
         };
@@ -69,9 +66,6 @@
                 extraConfigLua = mergedConfig.luaConfig;
                 inherit (mergedConfig) opts;
               })
-
-              pkgs.unzip
-              pkgs.cargo
             ];
           };
       };
