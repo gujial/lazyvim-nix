@@ -7,7 +7,6 @@
     lua-language-server
     stylua
     ripgrep
-    utftex
   ];
 
   # 核心插件
