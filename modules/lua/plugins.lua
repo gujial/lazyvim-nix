@@ -70,9 +70,17 @@ require("lazy").setup({
 		{
 			"nvim-treesitter/nvim-treesitter",
 			opts = {
-				-- 禁用自动安装（由 Nix 管理）
-				ensure_installed = {},
-				auto_install = false,
+				-- 安装 Snacks.image 文档渲染相关 parser
+				ensure_installed = {
+					"css",
+					"latex",
+					"norg",
+					"scss",
+					"svelte",
+					"typst",
+					"vue",
+				},
+				auto_install = true,
 
 				-- 启用高亮
 				highlight = {
@@ -105,6 +113,9 @@ require("lazy").setup({
 		{
 			"folke/snacks.nvim",
 			opts = {
+				image = {
+					enabled = true,
+				},
 				picker = {
 					hidden = true,
 					ignored = true,
