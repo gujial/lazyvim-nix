@@ -69,6 +69,7 @@ require("lazy").setup({
 		-- 语法树
 		{
 			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
 			opts = {
 				-- 安装 Snacks.image 文档渲染相关 parser
 				ensure_installed = {
@@ -418,13 +419,6 @@ require("lazy").setup({
 		-- mason
 		{ "mason-org/mason-lspconfig.nvim", enabled = false },
 		{ "mason-org/mason.nvim", enabled = false },
-
-		-- nvim-treesitter
-		{
-			"nvim-treesitter/nvim-treesitter",
-			lazy = false,
-			build = ":TSUpdate",
-		},
 
 		-- LeetCode 插件
 		{
