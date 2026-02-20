@@ -442,6 +442,7 @@ require("lazy").setup({
 				},
 				lang = "cpp",
 				picker = { provider = "snacks-picker" },
+				image_support = true,
 			},
 		},
 	},
