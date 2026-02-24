@@ -7,20 +7,21 @@
 {
   extraPackages = with pkgs; [
     # 图像处理工具（用于 Snacks.image）
-    imagemagick  # 图像转换和处理
-    ghostscript  # PDF 渲染
-    
+    imagemagick # 图像转换和处理
+    ghostscript # PDF 渲染
+
     # LaTeX 工具（用于数学表达式渲染）
-    tectonic     # 现代 LaTeX 编译器
+    tectonic # 现代 LaTeX 编译器
     # texlive.combined.scheme-medium
-    
+
     # Mermaid 图表渲染
     nodePackages.mermaid-cli
-    
+
     # SQLite（用于 Snacks.picker 的历史和频率功能）
     sqlite
 
     # 额外的系统工具
     nixfmt
+    gcc
   ];
 }
