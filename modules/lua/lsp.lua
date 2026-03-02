@@ -54,3 +54,6 @@ lspconfig.clangd.setup({
 		offsetEncoding = { "utf-16" },
 	},
 })
+
+-- C# LSP 配置
+lspconfig.omnisharp.setup({})

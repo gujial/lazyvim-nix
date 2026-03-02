@@ -11,6 +11,9 @@
     # C/C++
     clang-tools
 
+    # C#
+    omnisharp-roslyn
+
     # Bash
     nodePackages.bash-language-server
 
