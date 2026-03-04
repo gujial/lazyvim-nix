@@ -17,6 +17,7 @@ lspconfig.bashls.setup({})
 
 -- Python LSP 配置
 lspconfig.pyright.setup({
+	cmd = { "pyright-langserver", "--stdio" },
 	settings = {
 		python = {
 			analysis = {
@@ -29,7 +30,9 @@ lspconfig.pyright.setup({
 })
 
 -- Ruff LSP 配置
-lspconfig.ruff.setup({})
+lspconfig.ruff.setup({
+	cmd = { "ruff", "server" },
+})
 
 -- TypeScript/JavaScript LSP 配置
 lspconfig.vtsls.setup({})
@@ -38,7 +41,9 @@ lspconfig.vtsls.setup({})
 lspconfig.dartls.setup({})
 
 -- Nix LSP 配置
-lspconfig.nil_ls.setup({})
+lspconfig.nil_ls.setup({
+	cmd = { "nil" },
+})
 
 -- C/C++ LSP 配置
 lspconfig.clangd.setup({
@@ -56,4 +61,6 @@ lspconfig.clangd.setup({
 })
 
 -- C# LSP 配置
-lspconfig.omnisharp.setup({})
+lspconfig.csharp_ls.setup({
+	cmd = { "csharp-ls" },
+})

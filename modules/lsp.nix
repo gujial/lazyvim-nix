@@ -12,13 +12,16 @@
     clang-tools
 
     # C#
-    omnisharp-roslyn
+    csharp-ls
+    dotnet-sdk_10
+    dotnet-runtime_10
 
     # Bash
     nodePackages.bash-language-server
 
     # Latex
     ltex-ls
+    icu
 
     markdownlint-cli2
 
