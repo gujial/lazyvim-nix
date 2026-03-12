@@ -430,7 +430,7 @@ require("lazy").setup({
 				opts.formatters = opts.formatters or {}
 				opts.formatters.dotnet_format = {
 					command = "dotnet",
-					args = { "format", "--include", "$FILENAME", "--verbosity", "minimal" },
+					args = { "format", "--include", "$FILENAME" },
 					stdin = false,
 					require_cwd = true,
 				}
