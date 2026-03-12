@@ -420,6 +420,23 @@ require("lazy").setup({
 		{ "mason-org/mason-lspconfig.nvim", enabled = false },
 		{ "mason-org/mason.nvim", enabled = false },
 
+		-- C# 格式化
+		{
+			"stevearc/conform.nvim",
+			opts = function(_, opts)
+				opts.formatters_by_ft = opts.formatters_by_ft or {}
+				opts.formatters_by_ft.cs = { "dotnet_format" }
+
+				opts.formatters = opts.formatters or {}
+				opts.formatters.dotnet_format = {
+					command = "dotnet",
+					args = { "format", "--include", "$FILENAME", "--verbosity", "minimal" },
+					stdin = false,
+					require_cwd = true,
+				}
+			end,
+		},
+
 		-- LeetCode 插件
 		{
 			"kawre/leetcode.nvim",
