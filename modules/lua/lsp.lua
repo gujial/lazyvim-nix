@@ -40,6 +40,9 @@ lspconfig.vtsls.setup({})
 -- Dart LSP 配置
 lspconfig.dartls.setup({})
 
+-- Java LSP 配置
+lspconfig.jdtls.setup({})
+
 -- Nix LSP 配置
 lspconfig.nil_ls.setup({
 	cmd = { "nil" },

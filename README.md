@@ -5,7 +5,7 @@
 ## ✨ 特性
 
 - 🚀 开箱即用的 LazyVim 配置
-- 🔧 完整的 LSP 支持（Lua, Python, Bash, TypeScript, Markdown, Nix）
+- 🔧 完整的 LSP 支持（Lua, Python, Bash, TypeScript, Java, Markdown, Nix）
 - 🐛 集成的调试器 (DAP)：C/C++ (GDB), Python, JavaScript/TypeScript
 - 🌳 Treesitter 语法高亮和代码解析
 - 🔍 模糊查找 (Telescope + FZF)
@@ -119,6 +119,7 @@ modules/
 - pyright (Python)
 - ruff (Python linter)
 - vtsls (TypeScript/JavaScript)
+- jdt-language-server (Java)
 - nil (Nix)
 
 ### 调试器

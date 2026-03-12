@@ -35,6 +35,10 @@
     # Dart
     dart
 
+    # Java
+    jdt-language-server
+    jdk
+
     # Nix
     nil
 
