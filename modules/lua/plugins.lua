@@ -12,6 +12,17 @@ require("lazy").setup({
 		-- LazyVim 核心
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
+		-- 关闭默认 yanky 与系统剪贴板环的同步，避免 KDE/Klipper 焦点干扰
+		{
+			"gbprod/yanky.nvim",
+			optional = true,
+			opts = {
+				system_clipboard = {
+					sync_with_ring = false,
+				},
+			},
+		},
+
 		-- 模糊查找
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
