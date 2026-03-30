@@ -435,7 +435,32 @@ require("lazy").setup({
             opts.formatters = opts.formatters or {}
             opts.formatters.dotnet_format = {
                 command = "dotnet",
-                args = {"format", "--include", "$FILENAME"},
+                args = function(_, ctx)
+                    local search_opts = {
+                        path = vim.fs.dirname(ctx.filename),
+                        upward = true,
+                        type = "file"
+                    }
+
+                    local workspace = vim.fs.find(function(name)
+                        return name:match("%.sln$")
+                    end, search_opts)[1]
+
+                    if not workspace then
+                        workspace = vim.fs.find(function(name)
+                            return name:match("%.csproj$")
+                        end, search_opts)[1]
+                    end
+
+                    local args = {"format"}
+
+                    if workspace then
+                        table.insert(args, workspace)
+                    end
+
+                    vim.list_extend(args, {"--include", ctx.filename})
+                    return args
+                end,
                 stdin = false,
                 require_cwd = true
             }
