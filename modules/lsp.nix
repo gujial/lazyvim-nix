@@ -17,7 +17,7 @@
     dotnet-runtime_10
 
     # Bash
-    nodePackages.bash-language-server
+    bash-language-server
 
     # Latex
     ltex-ls
