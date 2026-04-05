@@ -15,7 +15,7 @@
     # texlive.combined.scheme-medium
 
     # Mermaid 图表渲染
-    nodePackages.mermaid-cli
+    mermaid-cli
 
     # SQLite（用于 Snacks.picker 的历史和频率功能）
     sqlite
