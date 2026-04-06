@@ -25,7 +25,9 @@
         "@VSCODE_JS_DEBUG_PATH@"
       ]
       [
-        "${pkgs.linkFarm "lazy-plugins" [ ]}"
+        "${pkgs.linkFarm "lazy-plugins" [
+          { name = "catppuccin"; path = pkgs.vimPlugins.catppuccin-nvim; }
+        ]}"
         "${pkgs.gdb}/bin"
         "${pkgs.lldb}/bin"
         "${pkgs.vscode-js-debug}"

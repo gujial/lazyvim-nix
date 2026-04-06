@@ -13,7 +13,18 @@ require("lazy").setup({
     spec = { -- LazyVim 核心
     {
         "LazyVim/LazyVim",
-        import = "lazyvim.plugins"
+        import = "lazyvim.plugins",
+        opts = {
+            colorscheme = "catppuccin-mocha"
+        }
+    }, -- Catppuccin 主题
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+            flavour = "mocha"
+        }
     }, -- 关闭默认 yanky 与系统剪贴板环的同步，避免 KDE/Klipper 焦点干扰
     {
         "gbprod/yanky.nvim",
