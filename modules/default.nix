@@ -16,6 +16,12 @@ let
   getList = attr: config: config.${attr} or [];
   getString = attr: config: config.${attr} or "";
 
+  # 兼容部分插件 derivation 仅包含 name 而没有 pname 的情况
+  normalizePlugin = plugin:
+    if builtins.isAttrs plugin && (plugin ? overrideAttrs) && !(plugin ? pname) && (plugin ? name)
+    then plugin.overrideAttrs (_: { pname = lib.getName plugin; })
+    else plugin;
+
   # 合并所有包依赖
   packages = lib.unique (
     (getList "extraPackages" pluginsModule) ++
@@ -28,13 +34,14 @@ let
   );
 
   # 合并所有插件
-  plugins = 
+  plugins = map normalizePlugin (
     (getList "extraPlugins" pluginsModule) ++
     (getList "extraPlugins" dapModule) ++
     (getList "extraPlugins" treesitterModule) ++
     (getList "extraPlugins" lspModule) ++
     (getList "extraPlugins" uiModule) ++
-    (getList "extraPlugins" keybindingsModule);
+    (getList "extraPlugins" keybindingsModule)
+  );
 
   # 合并所有 Lua 代码
   luaConfig = lib.concatStringsSep "\n" (lib.filter (s: s != "") [
