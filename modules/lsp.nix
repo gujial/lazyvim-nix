@@ -38,6 +38,7 @@
     # Java
     jdt-language-server
     jdk
+    lombok
 
     # Nix
     nil
@@ -50,5 +51,18 @@
     tree-sitter
   ];
 
-  extraConfigLua = builtins.readFile ./lua/lsp.lua;
+  extraConfigLua =
+    let
+      luaConfig = builtins.readFile ./lua/lsp.lua;
+    in
+    builtins.replaceStrings
+      [
+        "@JDTLS_PATH@"
+        "@LOMBOK_JAR@"
+      ]
+      [
+        "${pkgs.jdt-language-server}/bin/jdtls"
+        "${pkgs.lombok.out}/share/java/lombok.jar"
+      ]
+      luaConfig;
 }

@@ -1,5 +1,6 @@
 -- LSP 配置
 local lspconfig = require("lspconfig")
+local util = require("lspconfig.util")
 
 -- Lua LSP 配置
 lspconfig.lua_ls.setup({
@@ -41,7 +42,25 @@ lspconfig.vtsls.setup({})
 lspconfig.dartls.setup({})
 
 -- Java LSP 配置
-lspconfig.jdtls.setup({})
+local function jdtls_workspace_dir(root_dir)
+	return vim.fn.stdpath("cache") .. "/jdtls/" .. vim.fs.basename(root_dir)
+end
+
+lspconfig.jdtls.setup({
+	cmd = {
+		"@JDTLS_PATH@",
+		"--jvm-arg=-javaagent:@LOMBOK_JAR@",
+	},
+	root_dir = util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "build.gradle.kts"),
+	on_new_config = function(new_config, new_root_dir)
+		new_config.cmd = {
+			"@JDTLS_PATH@",
+			"--jvm-arg=-javaagent:@LOMBOK_JAR@",
+			"-data",
+			jdtls_workspace_dir(new_root_dir),
+		}
+	end,
+})
 
 -- Nix LSP 配置
 lspconfig.nil_ls.setup({
