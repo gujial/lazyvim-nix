@@ -76,7 +76,9 @@ lspconfig.clangd.setup({
 		"--header-insertion=iwyu",
 		"--completion-style=detailed",
 		"--function-arg-placeholders=true",
+		"--query-driver=**/*gcc*,**/*g++*,**/riscv32-unknown-elf-*",
 	},
+	root_dir = lspconfig.util.root_pattern("compile_commands.json", ".clangd", "compile_flags.txt", ".git"),
 	capabilities = {
 		offsetEncoding = { "utf-16" },
 	},
