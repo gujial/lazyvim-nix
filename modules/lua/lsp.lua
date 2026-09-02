@@ -76,7 +76,6 @@ lspconfig.clangd.setup({
 		"--header-insertion=iwyu",
 		"--completion-style=detailed",
 		"--function-arg-placeholders=true",
-		"--query-driver=**/*gcc*,**/*g++*,**/riscv32-unknown-elf-*",
 	},
 	capabilities = {
 		offsetEncoding = { "utf-16" },
