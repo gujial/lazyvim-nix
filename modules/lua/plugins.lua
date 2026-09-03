@@ -44,12 +44,19 @@ require("lazy").setup({
 			ft = { "markdown", "tex", "text" },
 			dependencies = { "neovim/nvim-lspconfig" },
 			config = function()
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = { "markdown", "tex", "text" },
+					callback = function(event)
+						vim.bo[event.buf].spell = false
+					end,
+				})
+
 				-- 手动配置 LTEX LSP
 				require("lspconfig").ltex.setup({
 					filetypes = { "markdown", "tex", "text" },
 					settings = {
 						ltex = {
-							language = "zh-CN",
+							language = { "zh-CN", "en-US" },
 							completionEnabled = true,
 						},
 					},
