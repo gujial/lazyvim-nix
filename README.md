@@ -74,7 +74,7 @@ pip install debugpy
 ### 快捷键
 
 | 快捷键 | 功能 |
-|--------|------|
+| -------- | ------ |
 | `<F5>` | 开始/继续调试 |
 | `<F10>` | 步过 (Step Over) |
 | `<F11>` | 步入 (Step Into) |
@@ -86,7 +86,7 @@ pip install debugpy
 
 ## 📚 模块结构
 
-```
+```bash
 modules/
 ├── default.nix        # 主配置整合
 ├── plugins.nix        # LazyVim 插件配置

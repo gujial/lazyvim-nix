@@ -1,0 +1,3 @@
+# Disable the default 80-column line-length rule.
+config:
+  MD013: false
