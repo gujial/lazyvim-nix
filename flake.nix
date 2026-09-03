@@ -41,7 +41,7 @@
                 extraPackages = mergedConfig.packages;
                 extraPlugins = mergedConfig.plugins;
                 extraConfigLua = mergedConfig.luaConfig;
-                inherit (mergedConfig) opts;
+                inherit (mergedConfig) env opts;
               })
             ];
           };
@@ -61,7 +61,7 @@
                 extraPackages = mergedConfig.packages;
                 extraPlugins = mergedConfig.plugins;
                 extraConfigLua = mergedConfig.luaConfig;
-                inherit (mergedConfig) opts;
+                inherit (mergedConfig) env opts;
               })
             ];
           };

@@ -15,6 +15,7 @@ let
   # 安全地提取值，如果不存在则返回默认值
   getList = attr: config: config.${attr} or [];
   getString = attr: config: config.${attr} or "";
+  getAttrs = attr: config: config.${attr} or { };
 
   # 兼容部分插件 derivation 仅包含 name 而没有 pname 的情况
   normalizePlugin = plugin:
@@ -53,7 +54,17 @@ let
     (getString "extraConfigLua" keybindingsModule)
   ]);
 
+  env = lib.foldl' lib.recursiveUpdate { } [
+    (getAttrs "env" pluginsModule)
+    (getAttrs "env" lspModule)
+    (getAttrs "env" dapModule)
+    (getAttrs "env" treesitterModule)
+    (getAttrs "env" optionalToolsModule)
+    (getAttrs "env" uiModule)
+    (getAttrs "env" keybindingsModule)
+  ];
+
 in {
-  inherit packages plugins luaConfig;
+  inherit packages plugins luaConfig env;
   opts = optionsModule.opts or {};
 }
