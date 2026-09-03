@@ -44,14 +44,19 @@ require("lazy").setup({
 			ft = { "markdown", "tex", "text" },
 			dependencies = { "neovim/nvim-lspconfig" },
 			config = function()
+				-- config 本身运行于触发懒加载的 FileType 事件中，需立即关闭当前缓冲区
+				vim.opt_local.spell = false
+
 				vim.api.nvim_create_autocmd("FileType", {
 					pattern = { "markdown", "tex", "text" },
-					callback = function(event)
-						vim.bo[event.buf].spell = false
+					callback = function()
+						-- 延迟到 LazyVim 自身的 FileType 自动命令（会开启 spell）执行之后
+						vim.schedule(function()
+							vim.opt_local.spell = false
+						end)
 					end,
 				})
 
-				-- 手动配置 LTEX LSP
 				require("lspconfig").ltex.setup({
 					filetypes = { "markdown", "tex", "text" },
 					settings = {
