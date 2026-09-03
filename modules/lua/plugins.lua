@@ -61,7 +61,7 @@ require("lazy").setup({
 					filetypes = { "markdown", "tex", "text" },
 					settings = {
 						ltex = {
-							language = { "zh-CN", "en-US" },
+							language = "en-US",
 							completionEnabled = true,
 						},
 					},
