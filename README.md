@@ -38,6 +38,35 @@
 }
 ```
 
+### 作为 Home Manager 模块使用
+
+在主 flake 的 `inputs` 中添加上面的 `lazyvim-nix` 输入，然后在 Home Manager
+模块列表中导入 `lazyvim-nix.homeManagerModules.lazyvim`。例如，独立 Home Manager 配置：
+
+```nix
+outputs = { nixpkgs, home-manager, lazyvim-nix, ... }: {
+  homeConfigurations.yourusername = home-manager.lib.homeManagerConfiguration {
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    modules = [
+      ./home.nix
+      lazyvim-nix.homeManagerModules.lazyvim
+    ];
+  };
+};
+```
+
+此示例假定已声明 `home-manager` 输入，并在 `home.nix` 中配置用户名、主目录和
+`home.stateVersion`。若通过 NixOS 集成 Home Manager，也可以在用户模块中导入：
+
+```nix
+home-manager.users.yourusername = {
+  imports = [ lazyvim-nix.homeManagerModules.lazyvim ];
+};
+```
+
+该模块通过 `home.packages` 安装带完整配置的 `nvim`，无需额外启用
+`programs.neovim` 或 `programs.nixvim`。
+
 ### 作为开发环境使用
 
 ```bash

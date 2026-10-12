@@ -48,6 +48,22 @@
         };
 
       flake = {
+        homeManagerModules.lazyvim =
+          { pkgs, lib, ... }:
+          let
+            mergedConfig = import ./modules/default.nix { inherit pkgs lib; };
+          in
+          {
+            home.packages = [
+              (nixvim.legacyPackages.${pkgs.stdenv.hostPlatform.system}.makeNixvim {
+                extraPackages = mergedConfig.packages;
+                extraPlugins = mergedConfig.plugins;
+                extraConfigLua = mergedConfig.luaConfig;
+                inherit (mergedConfig) env opts;
+              })
+            ];
+          };
+
         # 暴露 flake module 接口
         nixosModules.lazyvim =
           { pkgs, lib, ... }:
